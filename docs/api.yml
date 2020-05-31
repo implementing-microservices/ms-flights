@@ -1,0 +1,29 @@
+  openapi: 3.0.0
+  info:
+    title: NodeBootstrap API
+    description: |
+      API Spec for Nodebootstrap Demo API
+    version: 1.0.1
+  servers:
+    - url: http://api.example.com/v1
+      description: Production Server
+  paths:
+    /:
+      get:
+        summary: The Home Document endpoint
+
+        responses:
+          '200':    # success response
+            description: Successful Response
+
+    /users:
+      get:
+        summary: Get list of users
+        responses:
+          '200':    # success response
+            description: Successful Response
+      post:
+        summary: Add a new user
+        responses:
+          '200':    # success response
+            description: Successful Response
