@@ -50,8 +50,9 @@ install-dev-package-in-container:
 	docker-compose -p ${project} exec ${service} npm install -D ${package}
 
 .PHONY: migration-create
-migration-create:
+migration-create: start
 	docker-compose -p ${project} exec ${service} ./node_modules/db-migrate/bin/db-migrate create ${name} --sql-file
+	sudo chown -R $$USER ./migrations/sqls/
 
 .PHONY: migrate
 migrate: start
