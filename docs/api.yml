@@ -1,29 +1,168 @@
-  openapi: 3.0.0
-  info:
-    title: NodeBootstrap API
-    description: |
-      API Spec for Nodebootstrap Demo API
-    version: 1.0.1
-  servers:
-    - url: http://api.example.com/v1
-      description: Production Server
-  paths:
-    /:
-      get:
-        summary: The Home Document endpoint
+openapi: 3.0.0
+info:
+  title: Flights Management Microservice API
+  description: |
+    API Spec for Fight Management System
+  version: 1.0.1
+servers:
+  - url: http://api.example.com/v1
+    description: Production Server
+paths:
+  /flights:
+    get:
+      summary: Look Up Flight Details with Flight No and Departure Date
+      description: |
+        Lookup flight details, such as: the unique flight_id used by the
+        rest of the Flights management endpoints, flight departure and
+        arrival airports.
 
-        responses:
-          '200':    # success response
-            description: Successful Response
+        Example request:
+        ```
+          GET http://api.example.com/v1/flights?flight_no=AA2532&departure_date_time=2020-05-17T13:20
+        ```
+      parameters:
+        - name: flight_no
+          in: query
+          required: true
+          description: Flight Number.
+          schema:
+            type : string
+          example: AA2532
+        - name: departure_date_time
+          in: query
+          required: true
+          description: Date and time (in ISO8601)
+          schema:
+            type : string
+          example: 2020-05-17T13:20
 
-    /users:
-      get:
-        summary: Get list of users
-        responses:
-          '200':    # success response
-            description: Successful Response
-      post:
-        summary: Add a new user
-        responses:
-          '200':    # success response
-            description: Successful Response
+
+      responses:
+        '200':    # success response
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    flight_id:
+                      type: string
+                      example: "edcc03a4-7f4e-40d1-898d-bf84a266f1b9"
+                    origin_code:
+                      type: string
+                      example: "LAX"
+                    destination_code:
+                      type: string
+                      example: "DCA"
+
+                example:
+                  flight_id: "edcc03a4-7f4e-40d1-898d-bf84a266f1b9"
+                  origin_code: "LAX"
+                  destination_code: "DCA"
+
+  /flights/{flight_no}/seat_map:
+    get:
+      summary: Get a seat map for a flight
+      description: |
+        Example request:
+        ```
+          GET http://api.example.com/v1/flights/AA2532/datetime/2020-05-17T13:20/seats/12C
+        ```
+      parameters:
+        - name: flight_no
+          in: path
+          required: true
+          description: Unique Flight Identifier
+          schema:
+            type : string
+          example: "edcc03a4-7f4e-40d1-898d-bf84a266f1b9"
+
+      responses:
+        '200':    # success response
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Cabin:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        firstRow:
+                          type: number
+                          example: 8
+                        lastRow:
+                          type: number
+                          example: 23
+                        Wing:
+                          type: object
+                          properties:
+                            firstRow:
+                              type: number
+                              example: 14
+                            lastRow:
+                              type: number
+                              example: 22
+                        CabinClass:
+                          type: object
+                          properties:
+                            CabinType:
+                              type: string
+                              example: Economy
+                        Column:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              Column:
+                                type: string
+                                example: A
+                              Characteristics:
+                                type: array
+                                example:
+                                  - Window
+                                items:
+                                  type: string
+                        Row:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              RowNumber:
+                                type: number
+                                example: 8
+                              Seat:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    premiumInd:
+                                      type: boolean
+                                      example: false
+                                    exitRowInd:
+                                      type: boolean
+                                      example: false
+                                    restrictedReclineInd:
+                                      type: boolean
+                                      example: false
+                                    noInfantInd:
+                                      type: boolean
+                                      example: false
+                                    Number:
+                                      type: string
+                                      example: A
+                                    Facilities:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          Detail:
+                                            type: object
+                                            properties:
+                                              content:
+                                                type: string
+                                                example: LegSpaceSeat

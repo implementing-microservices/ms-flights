@@ -15,14 +15,13 @@ function serviceRoutes(app) {
   const AdvancedHealthcheckers = require('healthchecks-advanced');
   const advCheckers = new AdvancedHealthcheckers();
   // Database health check is cached for 10000ms = 10 seconds!
-  check.addCheck('db', 'usersQuery', advCheckers.dbUsersCheck, 
+  check.addCheck('db', 'usersQuery', advCheckers.dbUsersCheck,
     {minCacheMs: 10000});
   app.use(check.express());
 
   /* eslint-disable global-require */
 
-  app.use('/',      require('homedoc')); // attach to root route
-  app.use('/users', require('users')); // attach to sub-route
+  app.use('/flights', require('flights')); // attach to sub-route
 
   /* eslint-enable global-require */
 }
