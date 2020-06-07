@@ -3,6 +3,9 @@ version: "3.4"
 services:
   ms-flights:
     container_name: ms-flights
+    labels:
+      - "traefik.backend=ms-flights"
+      - "traefik.frontend.rule=PathPrefixStrip: /flights"
     user: root # avoids ton of volume mounting headaches in dev mode.
     build:
       context: .
