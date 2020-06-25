@@ -71,7 +71,7 @@ test: start test-exec
 
 .PHONY: test-exec
 test-exec:
-	docker-compose -p ${project} exec ${service} npm run test
+	docker-compose -p ${project} exec -T ${service} npm run test
 
 .PHONY: lint-fix
 lint-fix:
