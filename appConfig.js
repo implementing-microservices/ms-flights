@@ -12,12 +12,6 @@ function serviceRoutes(app) {
 
   // Add advanced healthcheck middleware (incl. database check)
   const check = healthcheck();
-  const AdvancedHealthcheckers = require('healthchecks-advanced');
-  const advCheckers = new AdvancedHealthcheckers();
-  // Database health check is cached for 10000ms = 10 seconds!
-  check.addCheck('db', 'usersQuery', advCheckers.dbUsersCheck,
-    {minCacheMs: 10000});
-  app.use(check.express());
 
   /* eslint-disable global-require */
 
