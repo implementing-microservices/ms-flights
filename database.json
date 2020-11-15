@@ -15,6 +15,22 @@
     "database": {"ENV": "MYSQL_DATABASE"},
     "host": {"ENV": "MYSQL_HOST"}
   },
+  "stage": {
+    "driver": "mysql",
+    "multipleStatements": true,
+    "user": {"ENV": "MYSQL_USER"},
+    "password": {"ENV": "MYSQL_PASSWORD"},
+    "database": {"ENV": "MYSQL_DATABASE"},
+    "host": {"ENV": "MYSQL_HOST"}
+  },
+  "production": {
+    "driver": "mysql",
+    "multipleStatements": true,
+    "user": {"ENV": "MYSQL_USER"},
+    "password": {"ENV": "MYSQL_PASSWORD"},
+    "database": {"ENV": "MYSQL_DATABASE"},
+    "host": {"ENV": "MYSQL_HOST"}
+  },  
   "qa-server" : {
     "driver": "mysql",
     "multipleStatements": true,
