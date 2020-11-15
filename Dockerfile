@@ -25,7 +25,7 @@ ENV HOME_DIR=/opt/app \
     PORT=5501
 
 # ENTRYPOINT ["/sbin/tini", "--"]
- ENTRYPOINT ["node", "server.js"]
+ ENTRYPOINT ["./shell/run-db-migraton.sh && node server.js"]
 
 
 
