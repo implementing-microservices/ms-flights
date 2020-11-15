@@ -33,6 +33,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: ${{ secrets.DOCKER_USERNAME }}/flights
         target: release
+        tags: latest
         add_git_labels: true
         tag_with_ref: true
       
