@@ -17,7 +17,7 @@
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "config": "^3.3.0",
-    "db-migrate": "^0.11.6",
+    "db-migrate": "^0.11.11",
     "db-migrate-mysql": "^2.1.1",
     "duration": "^0.2.2",
     "express": "^4.17.1",
@@ -37,6 +37,8 @@
     "uuid": "^7.0.2"
   },
   "devDependencies": {
+    "db-migrate": "^0.11.11",
+    "db-migrate-mysql": "^2.1.1",
     "after": "^0.8.1",
     "axios": "^0.19.2",
     "chai": "^4.2.0",
