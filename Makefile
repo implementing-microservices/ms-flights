@@ -46,7 +46,7 @@ install-package-in-container:
 add-dev: install-dev-package-in-container build
 
 .PHONY: install-dev-package-in-container
-install-dev-package-in-container:
+install-dev-package-in-container: start
 	docker-compose -p ${project} exec ${service} npm install -D ${package}
 
 .PHONY: migration-create
@@ -78,7 +78,7 @@ test-exec:
 	docker-compose -p ${project} exec -T ${service} npm run test
 
 .PHONY: lint-fix
-lint-fix:
+lint-fix: start
 	docker-compose -p ${project} exec ${service} npm run lint:fix
 
 .PHONY: test-cov
