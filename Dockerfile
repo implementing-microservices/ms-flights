@@ -24,9 +24,7 @@ ENV HOME_DIR=/opt/app \
     NODE_ENV=production \
     PORT=5501
 
-ENTRYPOINT ./shell/run-db-migraton.sh && node server.js
-
-
+ENTRYPOINT ./shell/run-db-migration.sh && node server.js
 
 FROM base as build
 
@@ -36,3 +34,5 @@ RUN npm install -g nodemon \
  && chown -R node /opt/app
 
 USER node
+
+ENTRYPOINT ./shell/run-db-migration.sh && node server.js
